@@ -1,0 +1,12 @@
+# .htaccess en la raíz de elbuencomer/
+
+RewriteEngine On
+RewriteBase /elbuencomer/
+
+# 1. Regla específica para la URL de la carpeta raíz (ej. /elbuencomer/)
+RewriteRule ^$ public/index.php?url= [L,QSA]
+
+# 2. Regla para URLs que tienen contenido (ej. /elbuencomer/client/catalogo)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/index.php?url=$1 [L,QSA]
